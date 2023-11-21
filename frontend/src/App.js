@@ -7,12 +7,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavbarComponent from "./components/navbar/navbar";
 import Home from "./pages/home";
 
+
+
+
 function App() {
   return (
-    <>
+    <div className="background">
       <NavbarComponent />
       <Home />
-    </>
+      
+
+    </div>
   );
 }
 

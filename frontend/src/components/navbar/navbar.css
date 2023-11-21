@@ -1,0 +1,12 @@
+/* importare font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;500&family=MedievalSharp&display=swap');
+
+nav .navbar-nav li a{
+  color: white !important;
+  }
+
+.primary{
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+}

@@ -13,6 +13,7 @@
   }
 }
 
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -34,5 +35,22 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Ajustare BG in functie de rezolutie */
+@media(min-width: 768px){
+  .background{
+    background-image: url("./assets/it_bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+@media(max-width:767px){
+  .background{
+    background-image: url("./assets/it_bg_mobile.png");
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 }

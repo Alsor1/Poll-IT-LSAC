@@ -1,7 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from '../../assets/logo.png'
 
 //import css
@@ -19,9 +18,9 @@ function CollapsibleExample() {
           <Nav className="me-auto">
             
           </Nav>
-          <Nav>
-            <Nav.Link href="#deets">Login</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
+          <Nav className="primary">
+            <Nav.Link href="#" style={{color:"#04395E"}}>Login</Nav.Link>
+            <Nav.Link eventKey={2} href="#" style={{color:"#04395E"}}>
               Register
             </Nav.Link>
           </Nav>
