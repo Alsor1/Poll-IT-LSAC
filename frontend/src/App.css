@@ -54,3 +54,8 @@
     background-repeat: no-repeat;
   }
 }
+
+.polls {
+  display: flex;
+  align-items: center;
+}
