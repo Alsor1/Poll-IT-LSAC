@@ -22,7 +22,7 @@ function App() {
       <Home />
       <Container fluid>
         <Row className="polls">
-          <Col><Poll/></Col>
+          <Col><Poll /></Col>
           <Col><Poll/></Col>
           <Col><Poll/></Col>
         </Row>

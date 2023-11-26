@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;500&family=MedievalSharp&display=swap');
+
+
 .App {
   text-align: center;
 }
@@ -58,4 +61,10 @@
 .polls {
   display: flex;
   align-items: center;
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
 }

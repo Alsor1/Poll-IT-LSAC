@@ -17,3 +17,31 @@
     gap: 50px;
     font-size:24px;
 }
+
+/* Modificari check-radio */
+.custom-radio {
+    appearance: none;
+    width: 30px;
+    height:30px;
+    border: 2px solid #04395E;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+  
+  .custom-radio:checked {
+    border-color: #04395E;
+  }
+  
+  .custom-radio:checked::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: #04395E;
+    border-radius: 50%;
+    margin: 3px;
+  }
+
+  .pollItem{
+    cursor: pointer;
+  }
