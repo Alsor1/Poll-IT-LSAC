@@ -27,7 +27,7 @@ export default function Login({open, onClose}) {
                 name="email"
                 id="email-input"
                 placeholder='Email'
-                className='input-style'
+                className='input-style-login'
                 onChange={update}></input><br></br>
 
                 <input
@@ -35,7 +35,7 @@ export default function Login({open, onClose}) {
                 name="password"
                 id="password-input"
                 placeholder='Password'
-                className='input-style'
+                className='input-style-login'
                 onChange={update}></input><br></br>
 
                 <div className='spacing-button'/>

@@ -52,7 +52,7 @@
     padding-top: 3%;
     padding-bottom: 3%;
 }
-.input-style{
+.input-style-login{
 
     width: 100%; 
     max-width: 400px; 
@@ -61,10 +61,10 @@
     color: white;
     border:solid;
     border-color: white;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
-.input-style::placeholder{
+.input-style-login::placeholder{
     color: rgb(255, 255, 255);
     opacity: 1;
     font-weight: 390;

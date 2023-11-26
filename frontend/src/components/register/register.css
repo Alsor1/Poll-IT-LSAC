@@ -52,7 +52,7 @@
     padding-top: 3%;
     padding-bottom: 3%;
 }
-.input-style{
+.input-style-register{
 
     width: 100%; 
     max-width: 400px; 
@@ -64,7 +64,7 @@
     border-radius: 10px;
 }
 
-.input-style::placeholder{
+.input-style-register::placeholder{
     color: rgb(255, 255, 255);
     opacity: 1;
     font-weight: 390;

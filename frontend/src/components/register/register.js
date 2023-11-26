@@ -27,7 +27,7 @@ export default function Register({open, onClose}) {
                 name="email"
                 id="email-input"
                 placeholder='Email'
-                className='input-style'
+                className='input-style-register'
                 onChange={update}></input><br></br>
 
                 <input
@@ -35,7 +35,7 @@ export default function Register({open, onClose}) {
                 name="password"
                 id="password-input"
                 placeholder='Password'
-                className='input-style'
+                className='input-style-register'
                 onChange={update}></input><br></br>
 
                 <input
@@ -43,7 +43,7 @@ export default function Register({open, onClose}) {
                 name="confirmPassword"
                 id="confirm-password-input"
                 placeholder='Confirm password'
-                className='input-style'
+                className='input-style-register'
                 onChange={update}></input><br></br>
 
                 <div className='spacing-button'/>

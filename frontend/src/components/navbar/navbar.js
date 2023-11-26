@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -16,8 +16,18 @@ import Register from "../register/register"
 function CollapsibleExample() {
   const [isOpen, setIsOpen]= useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(false);
+  const [sticky, setSticky] = useState(false);
+
+  useEffect(()=> {
+    const handleScroll = () => {
+      setSticky(window.scrollY > 10)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll);
+  })
 
   return (
+    <nav className={`${sticky ? "sticky" : ""}`}>
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand href="#home">
@@ -49,6 +59,7 @@ function CollapsibleExample() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    </nav>
   );
 }
 
