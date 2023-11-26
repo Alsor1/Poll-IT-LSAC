@@ -1,0 +1,81 @@
+.overlay-styles{
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #D9D9D9;
+    opacity: 79%;
+    z-index: 1000;
+}
+
+.modal-styles{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #04395E;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    z-index: 1000;
+    border-radius: 25px;
+    color:white;
+}
+
+.form-style{
+    display: block;
+    justify-content: center;
+}
+.close-btn{
+    position: absolute;
+    margin-left:74%;
+    cursor: pointer;
+}
+
+.login-title{
+    padding-top:20px;
+    text-align: center;
+}
+
+.login-submit{
+    margin-top: 111px;
+    color:#04395E;
+    border: none;
+    border-radius: 5px;
+    position:relative;
+    left:50%;
+    transform: translate(-50%, -50%);
+    padding-left:10%;
+    padding-right:10%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+.input-style{
+
+    width: 100%; 
+    max-width: 400px; 
+    opacity: 100%;
+    background-color:#04395E;
+    color: white;
+    border:solid;
+    border-color: white;
+    border-radius: 10px;
+}
+
+.input-style::placeholder{
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    font-weight: 390;
+    font-size: medium;
+    text-indent: 10px;
+    
+}
+#email-input{
+    margin-top:79px;
+}
+
+#password-input{
+    margin-top:40px;
+}

@@ -2,6 +2,7 @@ import close from '../../assets/X.png'
 import './createPoll.css'
 import React, {useState} from 'react'
 import Poll from '../poll/poll'
+import clearInput from '../../assets/clear-input.png'
 // Am scris asa CSS-ul pentru ca nu stiam de ce nu mergea sa il scriu in fisierul de CSS
 // Dupa ce m-am uitat mai atent am realizat ca am uitat sa pun extensia de .css la finalul fisierului (plang)
 const MODAL_STYLES = {
@@ -110,6 +111,8 @@ export default function CreatePoll({open, onClose}) {
 
           {/* Raspunsuri la poll */}
           <p>Answer Options</p>
+
+          <img src={clearInput} className="clear-input clear-input-1" alt="clearInput"/>
           <div className="red-line spacing"></div>
           <input
             type="text"
@@ -119,6 +122,8 @@ export default function CreatePoll({open, onClose}) {
             onChange={update}
             className='input-style'></input><br></br>
           <div className="red-line spacing"></div>
+
+          <img src={clearInput} className="clear-input clear-input-2" alt="clearInput"/>
           <input
             type="text"
             id='option2'
@@ -127,6 +132,8 @@ export default function CreatePoll({open, onClose}) {
             onChange={update}
             className='input-style'></input><br></br>
           <div className="red-line spacing"></div>
+
+          <img src={clearInput} className="clear-input clear-input-3" alt="clearInput"/>
           <input
             type="text"
             id='option3'

@@ -8,10 +8,14 @@ import logo from '../../assets/logo.png'
 //import css
 import '../navbar/navbar.css'
 
+// Import components
 import CreatePoll from "../createPoll/createPoll";
+import Login from "../login/login"
+import Register from "../register/register"
 
 function CollapsibleExample() {
   const [isOpen, setIsOpen]= useState(false);
+  const [isOpenLogin, setIsOpenLogin] = useState(false);
 
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
@@ -30,16 +34,17 @@ function CollapsibleExample() {
           <Nav.Link href="#" style={{color:"#04395E"}} onClick={() => setIsOpen(true)}>
               Create Poll
           </Nav.Link>
-          <CreatePoll open={isOpen} onClose={() => setIsOpen(false)}>
-          
+          <CreatePoll open={isOpen} onClose={() => setIsOpen(false)}></CreatePoll>
 
-          </CreatePoll>
+          {/* Login */}
+            <Nav.Link href="#" style={{color:"#04395E"}} onClick={() => setIsOpenLogin(true)}>Login</Nav.Link>
+            <Login/>
 
-          {/* Login and Register */}
-            <Nav.Link href="#" style={{color:"#04395E"}}>Login</Nav.Link>
+            {/* Register */}
             <Nav.Link eventKey={2} href="#" style={{color:"#04395E"}}>
               Register
             </Nav.Link>
+            <Register />
           </Nav>
         </Navbar.Collapse>
       </Container>

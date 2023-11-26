@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavbarComponent from "./components/navbar/navbar";
 import Home from "./pages/home";
 import Poll from "./components/poll/poll"
+import Footer from "./components/footer/footer"
 
 
 //React imports
@@ -18,6 +19,7 @@ import Col from 'react-bootstrap/Col';
 function App() {
   return (
     <div className="background">
+      <div className="lung-site"/>
       <NavbarComponent />
       <Home />
       <Container fluid>
@@ -28,7 +30,7 @@ function App() {
         </Row>
       </Container>
 
-
+    <Footer/>
     </div>
   );
 }
