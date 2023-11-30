@@ -16,9 +16,9 @@ export default function Register({open, onClose}) {
       if(!open) return null
   return (
     <>
-        <div className='overlay-styles'/>
+        <div className='overlay-styles' onClick={onClose}/>
         <div className='modal-styles'>
-        <img src={close} alt="close" className='close-btn'/><br></br>
+        <img src={close} alt="close" className='close-btn' onClick={onClose}/><br></br>
         <h1 className='register-title'>Register</h1>
 
         <form className='form-style'>

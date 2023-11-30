@@ -14,9 +14,13 @@ import Login from "../login/login"
 import Register from "../register/register"
 
 function CollapsibleExample() {
+  // Sticky navbar
+  const [sticky, setSticky] = useState(false);
+
+  // Open/close login/register/createpoll
   const [isOpen, setIsOpen]= useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(false);
-  const [sticky, setSticky] = useState(false);
+  const [isOepnRegister, setIsOpenRegister] = useState(false);
 
   useEffect(()=> {
     const handleScroll = () => {
@@ -48,13 +52,13 @@ function CollapsibleExample() {
 
           {/* Login */}
             <Nav.Link href="#" style={{color:"#04395E"}} onClick={() => setIsOpenLogin(true)}>Login</Nav.Link>
-            <Login/>
+            <Login open={isOpenLogin} onClose={() => setIsOpenLogin(false)}> </Login>
 
             {/* Register */}
-            <Nav.Link eventKey={2} href="#" style={{color:"#04395E"}}>
+            <Nav.Link eventKey={2} href="#" style={{color:"#04395E"}} onClick={() => setIsOpenRegister(true)}>
               Register
             </Nav.Link>
-            <Register />
+            <Register open={isOepnRegister} onClose={() => setIsOpenRegister(false)}></Register>
           </Nav>
         </Navbar.Collapse>
       </Container>
