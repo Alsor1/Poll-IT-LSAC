@@ -32,7 +32,7 @@ function Poll({poll}) {
                     ))}
                 </Form>
                 
-
+                <button className='vote-button'>Vote</button>
             </div>
         </div>
     );

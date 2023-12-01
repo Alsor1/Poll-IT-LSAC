@@ -45,3 +45,14 @@
   .pollItem{
     cursor: pointer;
   }
+
+.vote-button{
+  cursor: pointer;
+  float:right;
+  background-color: #04395E;
+  color: white;
+  border-radius: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: larger;
+}
