@@ -4,3 +4,13 @@
     justify-content: center;
     gap:100px;
 }
+
+@media(max-width:700px){
+    .footer-style{
+        gap:30px
+    }
+    .footer-img{
+        width:20%;
+        height:20%;
+    }
+}

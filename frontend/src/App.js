@@ -24,9 +24,9 @@ function App() {
       <Home />
       <Container fluid>
         <Row className="polls">
-          <Col><Poll /></Col>
-          <Col><Poll/></Col>
-          <Col><Poll/></Col>
+          <Col><Poll className="poll" xs={6} /></Col>
+          <Col><Poll className="poll" xs={6}/></Col>
+          <Col><Poll className="poll" xs={6}/></Col>
         </Row>
       </Container>
 

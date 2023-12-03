@@ -31,7 +31,7 @@ function CollapsibleExample() {
   })
 
   return (
-    <nav className={`${sticky ? "sticky" : ""}`}>
+    <nav className={`${sticky ? "sticky" : ""}` }>
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand href="#home">

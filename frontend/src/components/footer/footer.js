@@ -11,9 +11,9 @@ import twitch from "../../assets/twitch.png"
 export default function Footer() {
   return (
     <div className="footer-style">
-        <img src={insta} alt="instagram" />
-        <img src={meta} alt="meta" />
-        <img src={twitch} alt="twitch" />
+        <img src={insta} alt="instagram" className='footer-img'/>
+        <img src={meta} alt="meta" className='footer-img'/>
+        <img src={twitch} alt="twitch" className='footer-img'/>
     </div>
   )
 }

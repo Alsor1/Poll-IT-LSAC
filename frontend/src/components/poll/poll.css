@@ -1,6 +1,8 @@
 .background-poll{
     background-color: white;
     border-radius: 25px;
+    width:100%;
+    margin-right:150px
 }
 .spacing-poll{
     margin:20px;
@@ -56,3 +58,18 @@
   padding-right: 30px;
   font-size: larger;
 }
+@media(max-width:991px) {
+  .custom-radio{
+    width:20px;
+    height: 20px;
+  }
+  .custom-radio:checked::before {
+    width: 10px;
+    height: 10px;
+  }
+  .mb-3{
+    font-size:20px;
+  }
+  
+}
+

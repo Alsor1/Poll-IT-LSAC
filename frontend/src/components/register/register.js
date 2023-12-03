@@ -3,15 +3,34 @@ import "./register.css"
 import close from '../../assets/X.png'
 
 export default function Register({open, onClose}) {
-    const[state, setState]= useState({});
-    const update = event =>{
-        const target = event.currentTarget
-    
-        setState({
-          ...state,
-          [target.name] : target.type === 'text' ? target.value : null
-        })
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    const handleRegister = async (e) => {
+      e.preventDefault();
+      if(password === confirmPassword){
+        try{
+          const response = await fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({email, password})
+          })
+          if(response.status===201){
+            console.log('User registered successfully');
+          } else{
+            console.error('Error registering user');
+          }
+        }catch (error){
+            console.error('Error: ', error);
+        }
+      }else{
+        alert("Passwords do not match")
       }
+    };
+    
 
       if(!open) return null
   return (
@@ -28,7 +47,8 @@ export default function Register({open, onClose}) {
                 id="email-input"
                 placeholder='Email'
                 className='input-style-register'
-                onChange={update}></input><br></br>
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}></input><br></br>
 
                 <input
                 type="password"
@@ -36,7 +56,8 @@ export default function Register({open, onClose}) {
                 id="password-input"
                 placeholder='Password'
                 className='input-style-register'
-                onChange={update}></input><br></br>
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}></input><br></br>
 
                 <input
                 type="password"
@@ -44,11 +65,12 @@ export default function Register({open, onClose}) {
                 id="confirm-password-input"
                 placeholder='Confirm password'
                 className='input-style-register'
-                onChange={update}></input><br></br>
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}></input><br></br>
 
                 <div className='spacing-button'/>
 
-                <button className='register-submit'>Create Account</button>
+                <button className='register-submit' onClick={handleRegister}>Create Account</button>
             </form>
         </div>
     </>

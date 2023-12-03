@@ -1,58 +1,17 @@
 import close from '../../assets/X.png'
 import './createPoll.css'
 import React, {useState} from 'react'
-import Poll from '../poll/poll'
 import clearInput from '../../assets/clear-input.png'
 // Am scris asa CSS-ul pentru ca nu stiam de ce nu mergea sa il scriu in fisierul de CSS
 // Dupa ce m-am uitat mai atent am realizat ca am uitat sa pun extensia de .css la finalul fisierului (plang)
-const MODAL_STYLES = {
-  position: 'fixed',
-  top: '50%',
-  left:'50%',
-  transform: 'translate(-50%, -50%)',
-  backgroundColor: '#04395E',
-  paddingLeft: '50px',
-  paddingRight: '50px',
-  paddingTop:'20px',
-  paddingBottom:'20px',
-  zIndex:1000,
-  borderRadius:"25px",
-  color:"#FFF"
-  
-}
-
-const OVERLAY_STYLES = {
-  position:'fixed',
-  top:0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: '#D9D9D9' ,
-  opacity:"79%",
-  zIndex: 1000
-}
-
-const IMG_STYLES = {
-  display:"inline",
-  float:"right",
-  
-}
-
-const FORM_STYLES = {
-  display:"block",
-}
-let poll={};
-
 export default function CreatePoll({open, onClose}) {
-  const[state, setState] = useState({});
-  const update = event =>{
-    const target = event.currentTarget
 
-    setState({
-      ...state,
-      [target.name] : target.type === 'text' ? target.value : null
-    })
-  }
+  const [title, setTitle] = useState('');
+  const [poll, setPoll] = useState('singleType');
+  const [option1, setOption1] = useState('');
+  const [option2, setOption2] = useState('');
+  const [option3, setOption3] = useState('');
+
 
   // const submit = event =>{
   //   event.preventDefault();
@@ -60,21 +19,50 @@ export default function CreatePoll({open, onClose}) {
   //   console.log(poll);
   //   Poll poll={poll};
   // }
+
+  const handleCreatePoll = async (e) => {
+    e.preventDefault();
+    console.log(title, poll, option1, option2, option3);
+    try{
+      const response = await fetch('http://localhost:3000/polls', {
+        method: 'POST',
+        headers:{
+          'Const-Type' : 'application/json',
+        },
+        body: JSON.stringify({title, poll, option1, option2, option3}),
+      });
+
+      if(response.status === 201){
+        console.log('Poll created');
+      }else{
+        console.error('Failed to create poll');
+      }
+    }catch(error){
+      console.error("Error", error)
+    }
+  }
+  const clear1 = document.getElementsByClassName('clear-input-1');
+  const clear1Funct = (e) => {
+    e.preventDefault()
+    clear1.reset();
+  }
+  
+  
+  
   
   if(!open) return null
   return (
     <>
-    <div style={OVERLAY_STYLES} onClick={onClose}/>
-      <div style={MODAL_STYLES}>
+    <div className='overlay-styles-create-poll' onClick={onClose}/>
+      <div className="modal-styles-create-poll">
 
-        <form style={FORM_STYLES}>
+        <form className="form-styles-create-poll">
           {/* buton de inchis */}
           <img
             onClick={onClose}
             src={close}
             alt="close"
-            className='img-close'
-            style={IMG_STYLES}></img>
+            className='img-close img-styles-create-poll'></img>
 
           {/* Titlu */}
           <h2 className="title-style">Create a Poll</h2>
@@ -88,63 +76,69 @@ export default function CreatePoll({open, onClose}) {
             id='pollTitle'
             className='input-style'
             placeholder='Type your question here'
-            onChange={update}></input>
+            maxLength={25}
+            onChange={(e)=>setTitle(e.target.value)}></input>
 
           {/* selectare tip de poll*/}
           <p>Voting type</p>
           <label>
           <input
+          label="singleType"
             type="radio"
             value="singleType"
             name="pollType"
             className="poll-type" 
-            onClick={() => <Poll poll={poll} />}/> Single Choice 
+            onClick={() => setPoll("singleType")}/> Single Choice 
           </label><br></br>
 
           <label>
           <input
             type="radio"
-            value="multipelType"
+            value="multipleType"
             name="pollType"
-            className="poll-type" /> Multiple choice
+            className="poll-type"
+            onClick={() => setPoll("multipelType")} /> Multiple choice
           </label>
 
           {/* Raspunsuri la poll */}
           <p>Answer Options</p>
 
-          <img src={clearInput} className="clear-input clear-input-1" alt="clearInput"/>
+          <img src={clearInput} className="clear-input clear-input-1" alt="clearInput" onClick={()=> document.getElementById("option1").value=''}/>
           <div className="red-line spacing"></div>
           <input
             type="text"
             id='option1'
             name='option1'
             placeholder='Option 1'
-            onChange={update}
-            className='input-style'></input><br></br>
+            className='input-style'
+            maxLength={60}
+            onChange={(e)=>setOption1(e.target.value)}></input><br></br>
           <div className="red-line spacing"></div>
 
-          <img src={clearInput} className="clear-input clear-input-2" alt="clearInput"/>
+          <img src={clearInput} className="clear-input clear-input-2" alt="clearInput" onClick={()=> document.getElementById("option2").value=''}/>
           <input
             type="text"
             id='option2'
             name='option2'
             placeholder='Option 2'
-            onChange={update}
-            className='input-style'></input><br></br>
+            className='input-style'
+            maxLength={60}
+            onChange={(e)=>setOption2(e.target.value)}></input><br></br>
           <div className="red-line spacing"></div>
 
-          <img src={clearInput} className="clear-input clear-input-3" alt="clearInput"/>
+          <img src={clearInput} className="clear-input clear-input-3" alt="clearInput" onClick={()=> document.getElementById("option3").value=''}/>
           <input
             type="text"
             id='option3'
             name='option3'
             placeholder='Option 3'
-            onChange={update}
-            className='input-style'></input><br></br>
+            className='input-style'
+            maxLength={60}
+            onChange={(e)=>setOption3(e.target.value)}></input><br></br>
 
           {/* Buton submit poll */}
           <div className='spacing-button' />
-          <button className=" create-button"  href="#">Create Poll</button>
+          <button className=" create-button"  onClick={handleCreatePoll}>Create Poll</button>
         </form>
       </div>
     </>

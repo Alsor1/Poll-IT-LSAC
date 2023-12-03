@@ -10,6 +10,13 @@
   pointer-events: none;
 }
 
+.polls {
+  display: flex;
+  align-items: center;
+  flex-flow:row wrap;
+  /* flex-direction: column; */
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -48,6 +55,9 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
+  .polls{
+    flex-flow: row wrap;
+  }
 }
 
 @media(max-width:767px){
@@ -56,18 +66,14 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
+  
 }
 
-.polls {
-  display: flex;
-  align-items: center;
-}
+
 
 body{
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 22px;
-    
-    
 }
 

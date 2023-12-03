@@ -83,3 +83,13 @@
 #confirm-password-input{
     margin-top: 40px;
 }
+@media(min-width:607px) and (max-width:750px){
+    .modal-styles{
+        width:60%;
+    }
+}
+@media (max-width:606px){
+    .modal-styles{
+        width:82%;
+    }
+}

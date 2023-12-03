@@ -1,0 +1,36 @@
+GET http://localhost:3000/users
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "email": "cici@goblin.com",
+    "password": "mișa003 🪑"
+}
+
+###
+
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "email": "cici@goblin.com",
+    "password": "mișa003 🪑"
+}
+
+###
+GET http://localhost:3000/polls
+
+###
+POST http://localhost:3000/polls
+Content-Type: application/json
+
+{
+    "title": "Test",
+    "type": "singleType",
+    "option1": "Peste",
+    "option2": "Cici",
+    "option3": "Gogo"
+
+}
