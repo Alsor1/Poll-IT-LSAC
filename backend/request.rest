@@ -1,12 +1,12 @@
 GET http://localhost:3000/users
 ###
 
-POST http://localhost:3000/users
+POST http://localhost:27017/poll-it/users
 Content-Type: application/json
 
 {
-    "email": "cici@goblin.com",
-    "password": "mișa003 🪑"
+    "email": "test@gmail.com",
+    "password": "123"
 }
 
 ###
@@ -23,7 +23,7 @@ Content-Type: application/json
 GET http://localhost:3000/polls
 
 ###
-POST http://localhost:3000/polls
+POST http://localhost:27017/poll-it/poll
 Content-Type: application/json
 
 {

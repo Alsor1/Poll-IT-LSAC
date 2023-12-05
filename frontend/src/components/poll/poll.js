@@ -11,7 +11,7 @@ function Poll({poll}) {
         <div className="background-poll">
             <div className="spacing-poll in-poll">
                 <h2>
-                {`Lorem ipsum dolor sit ame`}
+                {poll.title}
                 </h2>
                 <p>Make a choice:</p>
                 <Form className="form-items">
@@ -19,14 +19,14 @@ function Poll({poll}) {
                         <div key={`stacked-${type}`} className="mb-3">
                             
                         <label className="pollItem">
-                            <input type="radio" value="singleType" name="pollType"  className="custom-radio"/> Proident dolor nisi nulla id veniam dolore ad do deserunt.
+                            <input type="radio" value="singleType" name="pollType"  className="custom-radio"/> {poll.option1}
                         </label>
 
                         <label className="pollItem">
-                            <input type="radio" value="multipelType" name="pollType" className="custom-radio" /> Proident dolor nisi nulla id veniam dolore ad do deserunt.
+                            <input type="radio" value="multipelType" name="pollType" className="custom-radio" /> {poll.option2}
                         </label>
                         <label className="pollItem">
-                            <input type="radio" value="multipelType" name="pollType" className="custom-radio" /> Proident dolor nisi nulla id veniam dolore ad do deserunt.
+                            <input type="radio" value="multipelType" name="pollType" className="custom-radio" /> {poll.option3}
                         </label>
                         </div>
                     ))}

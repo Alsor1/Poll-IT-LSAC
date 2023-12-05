@@ -12,8 +12,7 @@
 
 .polls {
   display: flex;
-  align-items: center;
-  flex-flow:row wrap;
+  justify-content: 'space-between';
   /* flex-direction: column; */
 }
 

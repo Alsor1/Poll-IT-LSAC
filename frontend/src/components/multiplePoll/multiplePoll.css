@@ -1,0 +1,75 @@
+.background-poll{
+    background-color: white;
+    border-radius: 25px;
+    width:100%;
+    margin-right:150px
+}
+.spacing-poll{
+    margin:20px;
+}
+.in-poll{
+    height:500px;
+    max-height:500px;
+    
+}
+
+.mb-3{
+    display:flex;
+    flex-direction: column;
+    gap: 50px;
+    font-size:24px;
+}
+
+/* Modificari check-checkbox */
+.custom-checkbox {
+    appearance: none;
+    width: 30px;
+    height:30px;
+    border: 2px solid #04395E;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+  
+  .custom-checkbox:checked {
+    border-color: #04395E;
+  }
+  
+  .custom-checkbox:checked::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: #04395E;
+    border-radius: 50%;
+    margin: 3px;
+  }
+
+  .pollItem{
+    cursor: pointer;
+  }
+
+.vote-button{
+  cursor: pointer;
+  float:right;
+  background-color: #04395E;
+  color: white;
+  border-radius: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: larger;
+}
+@media(max-width:991px) {
+  .custom-checkbox{
+    width:20px;
+    height: 20px;
+  }
+  .custom-checkbox:checked::before {
+    width: 10px;
+    height: 10px;
+  }
+  .mb-3{
+    font-size:20px;
+  }
+  
+}
+

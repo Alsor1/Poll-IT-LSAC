@@ -6,26 +6,36 @@ export default function Login({open, onClose}) {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
 
+    
     const handleLogin = async (e) => {
       e.preventDefault();
-      try{
-        const response = await fetch('http://localhost:3000/users/login', {
-          method: 'POST',
-          headers: {
-            'Const-Type' : 'application/json',
-          },
-          body: JSON.stringify({email, password}),
-        });
-
-        if(response.status === 200) {
-          console.log('Login successful');
-        }else{
-          console.error('Login failed');
+      const emailInput = document.getElementById('email-input');
+      if (emailInput.validity.valid) {
+        try {
+          const response = await fetch('http://localhost:3001/poll-it/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+          });
+  
+          if (response.status === 200) {
+            const { user } = await response.json();
+            localStorage.setItem('user', JSON.stringify(user));
+            console.log(user.userId);
+            console.log('Login successful');
+            window.location.reload();
+          } else {
+            console.error('Login failed');
+          }
+        } catch (error) {
+          console.error('Error', error);
         }
-      }catch (error){
-        console.error('Error', error);
+      } else {
+        alert('Invalid email!');
       }
-    }
+    };
 
       if(!open) return null
   return (
@@ -37,7 +47,7 @@ export default function Login({open, onClose}) {
 
         <form className='form-style-login'>
                 <input
-                type="text"
+                type="email"
                 name="email"
                 id="email-input"
                 placeholder='Email'
