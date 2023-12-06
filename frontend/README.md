@@ -68,3 +68,25 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### descriere site
+
+### generare poll-uri default
+Pentru a genera poll-urile default am creat o functie createDefaultPolls care creaza doua poll-uri si le incarca in baza de date daca ea este goala
+
+### Incarcarea poll-urilor din baza de date se intampla intr-un hook useEffect care se intampla asincron cu incarcarea site-ului, apoi folosind metoda map luam fiecare poll din baza de date si verifica ce tip este. In functie de tipul sau o sa incarce o componenta Poll(single choice) sau MultiplePoll(multiple choice).
+
+### Navbar-ul contine initial butonul de login si register:
+	-register-ul o sa verifice intai local daca email-ul este introdus corect si parola sa fie identica cu confirmarea ei, daca nu este asa o sa apara un alert pe ecran. Daca totul merge bine se va crea un nou obiect in users care va contine parola incriptata si email-ul user-ului. De asemenea email-ul este salvat in baza de date lowercase(indiferent de cum l-a introdus user-ul) 
+	-login-ul o sa caute in baza de date daca exista un email identic cu cel introdus si apoi o sa compare parola introdusa cu cea din baza de date; daca sunt identice id-ul creat de mongoDB o sa fie stocat local si logarea se efectueaza
+
+	Dupa logare in navbar o sa apara Create Poll si logout-ul
+	-Create Poll-ul o sa afiseze pe ecran un pop-up in care poti sa introduci datele necesare pentru a crea un poll si apoi o sa creeze o instanta noua in baza de date pentru acel poll
+	-Logout-ul o sa goleasca memoria locala si o sa aduca navbar-ul la starea initiala
+
+### Votarea se intampla cand user-ul este logat, daca nu este logat butonul nu o sa apara. In momentul in care user-ul este logat o sa vada butonul de vote si o sa poata vota, dupa ce a votat id-ul lui o sa fie memorat in poll-ul respectiv din baza de date si o sa dispara butonul de vote
+
+### Stergerea poll-ului se intampla atunci cand userId-ul este identic cu creatorId si se va genera butonul de delete poll care o sa il elimine din baza de date. CreatorId se genereaza atunci cand un user creaza un poll, si o sa memoreze id-ul user-ului logat in acel moment. 
+
+### Pentru partea de responsiveness am incercat sa folosesc cat mai mult bootstrap si flexbox, insa cand am intampinat probleme folosindu-le am setat din css niste limite pentru marimile ecranului si apoi am schimbat respectiv css-ul componentei in functie de ele.
