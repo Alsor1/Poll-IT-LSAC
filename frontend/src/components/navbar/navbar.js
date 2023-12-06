@@ -50,7 +50,7 @@ function CollapsibleExample() {
       <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
         <Container>
           <Navbar.Brand href="#home">
-            <img src={logo} alt="Testoasa" />
+            <img src={logo} alt="it" onClick={()=>{window.location.replace('https://www.youtube.com/watch?v=dQw4w9WgXcQ')}} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -84,7 +84,7 @@ function CollapsibleExample() {
                   </>
               ) : (
                 <>
-                  <Nav.Link href="#" style={{ color: '#04395E' }} onClick={() => setIsOpenLogin(true)}>
+                  <Nav.Link href="#" style={{ color: '#04395E' }} onClick={() => setIsOpenRegister(true)}>
                     Register
                   </Nav.Link>
                   <Register open={isOpenRegister} onClose={() => setIsOpenRegister(false)}></Register>

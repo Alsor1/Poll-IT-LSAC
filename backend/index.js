@@ -21,7 +21,6 @@ mongoose.connection.on('error', (err) => {
   console.error(`MongoDB connection error: ${err}`);
 });
 
-// Define MongoDB Schema and Model for User
 const userSchema = new mongoose.Schema({
   email: String,
   password: String,
@@ -88,21 +87,15 @@ const pollSchema = new mongoose.Schema({
     title: String,
     type: String,
     option1: String,
-    value1: {
-      type: Number,
-      default: 0,
-    },
     option2: String,
-    value2: {
-      type: Number,
-      default: 0,
-    },
     option3: String,
-    value3: {
-      type: Number,
-      default: 0,
+    votes: {
+      type: [Number],
+      default: [0,0,0]
+
     },
-    voted: [String]
+    voted: [String],
+    userCreator: String,
 });
 
 const Poll = mongoose.model('Poll', pollSchema);
@@ -110,6 +103,7 @@ const Poll = mongoose.model('Poll', pollSchema);
 // Create a new poll
 app.post('/poll-it/polls', async (req, res) => {
     const { title, type, option1, option2, option3 } = req.body;
+    const userId = req.headers['user-id'];
     
     try {
         const newPoll = new Poll({
@@ -118,6 +112,7 @@ app.post('/poll-it/polls', async (req, res) => {
             option1,
             option2,
             option3,
+            userCreator: userId,
         });
         
         const savedPoll = await newPoll.save();
@@ -144,11 +139,109 @@ const fetchPolls = async () => {
   }
 };
 
+app.delete('/poll-it/polls/:pollId', async (req, res) => {
+  const userId = req.headers['user-id'];
+  const pollId = req.params.pollId;
+
+  try {
+
+    const poll = await Poll.findOne({ _id: pollId, userCreator: userId });
+    if (!poll) {
+      res.status(404).json({ error: 'Poll not found or you do not have permission to delete it' });
+    } else {
+      await Poll.findByIdAndDelete(pollId);
+      res.status(200).json({ message: 'Poll deleted successfully' });
+    }
+  } catch (error) {
+    console.error('Error deleting poll', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
 app.get('/poll-it/polls', async (req, res) => {
   try {
     const polls = await fetchPolls();
     res.json(polls);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+app.post('/poll-it/polls', async (req, res) =>{
+  const id = req.body.id;
+  const check = req.body.checked;
+  const poll = Poll.find({_id:id})
+  poll.votes[check]++;
+  poll.save();
+})
+
+
+// Vote on a poll
+app.post('/poll-it/polls/vote', async (req, res) => {
+  const { pollId, userId, selectedOption } = req.body;
+
+  try {
+    const poll = await Poll.findById(pollId);
+
+    if (!poll) {
+      res.status(404).json({ error: 'Poll not found' });
+    } else {
+      // Check if the user has already voted
+      if (!poll.voted.includes(userId)) {
+        // Update votes based on the selected option
+        const optionIndex = ['option1', 'option2', 'option3'].indexOf(selectedOption);
+        poll.votes[optionIndex]++;
+
+        // Add the user to the list of voted users
+        poll.voted.push(userId);
+
+        // Save the updated poll
+        await poll.save();
+
+        res.status(200).json({ message: 'Vote submitted successfully' });
+      } else {
+        res.status(400).json({ error: 'User has already voted in this poll' });
+      }
+    }
+  } catch (error) {
+    console.error('Error submitting vote', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.post('/poll-it/polls/vote-multiple', async (req, res) => {
+  const { pollId, userId, selectedOptions } = req.body;
+
+  try {
+    const poll = await Poll.findById(pollId);
+
+    if (!poll) {
+      res.status(404).json({ error: 'Poll not found' });
+    } else {
+      // Check if the user has already voted
+      if (!poll.voted.includes(userId)) {
+        // Update votes based on the selected options
+       
+          poll.votes[0]=selectedOptions[0];
+          poll.votes[1]=selectedOptions[1];
+          poll.votes[2]=selectedOptions[2];
+
+
+        // Add the user to the list of voted users
+        poll.voted.push(userId);
+
+        // Save the updated poll
+        await poll.save();
+
+        res.status(200).json({ message: 'Vote submitted successfully' });
+      } else {
+        res.status(400).json({ error: 'User has already voted in this poll' });
+      }
+    }
+  } catch (error) {
+    console.error('Error submitting vote', error);
+    res.status(500).send('Internal Server Error');
   }
 });

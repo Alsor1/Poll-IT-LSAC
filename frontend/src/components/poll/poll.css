@@ -58,6 +58,15 @@
   padding-right: 30px;
   font-size: larger;
 }
+.del-button{
+  cursor: pointer;
+  background-color: #04395E;
+  color: white;
+  border-radius: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: larger;
+}
 @media(max-width:991px) {
   .custom-radio{
     width:20px;
@@ -72,4 +81,5 @@
   }
   
 }
+
 

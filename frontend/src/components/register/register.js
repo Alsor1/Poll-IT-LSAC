@@ -8,9 +8,6 @@ export default function Register({ open, onClose }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // This should already be declared in your API file
-
-
   const handleRegister = async (e) => {
     e.preventDefault();
     const emailInput = document.getElementById('email-input');

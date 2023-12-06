@@ -22,6 +22,48 @@ import axios from 'axios'
 function App() {
   const [polls, setPolls] = useState([]);
 
+  const createDefaultPolls = async () => {
+    try {
+
+      const existingPolls = await axios.get('http://localhost:3001/poll-it/polls');
+
+      if (existingPolls.data.length === 0) {
+        const defaultPolls = [
+          {
+            title: 'Ce animal se afla pe tricourile departamentului de IT?',
+            option1: 'Un elefant',
+            option2: 'Testos',
+            option3: 'Cane',
+          },
+          {
+            title: 'Departament preferat',
+            option1: 'Logistica',
+            option2: 'HR',
+            option3: 'FR',
+          },
+        ];
+  
+        for (const poll of defaultPolls) {
+          await axios.post('http://localhost:3001/poll-it/polls', poll, {
+            headers: {
+              'user-id': 'defaultUser',
+            },
+          });
+          console.log(`Default poll "${poll.title}" created successfully`);
+        }
+      } else {
+        console.log('Database is not empty. Skipping default poll creation.');
+      }
+    } catch (error) {
+      console.error('Error checking/fetching existing polls', error);
+    }
+  };
+  
+
+  useEffect(() => {
+    createDefaultPolls();
+  }, []);
+
   useEffect(() => {
     const fetchPolls = async () => {
       try {

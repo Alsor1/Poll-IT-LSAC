@@ -13,30 +13,38 @@ export default function CreatePoll({ open, onClose }) {
 
   const handleCreatePoll = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.post('http://localhost:3001/poll-it/polls', { // Update the URL
-        title,
-        type,
-        option1,
-        option2,
-        option3,
-      });
-  
-      if (response.status === 201) {
-        console.log('Poll created');
+      const storedUser = localStorage.getItem('user');
+      
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        const userCreator = user.userId;
+
+        const response = await axios.post('http://localhost:3001/poll-it/polls', {
+          title,
+          type,
+          option1,
+          option2,
+          option3,
+        }, {
+          headers: {
+            'user-id': userCreator,
+          },
+        });
+
+        if (response.status === 201) {
+          console.log('Poll created');
+          window.location.reload();
+        } else {
+          console.error('Failed to create poll');
+        }
       } else {
-        console.error('Failed to create poll');
+        console.error('User information not found in localStorage');
       }
     } catch (error) {
       console.error('Error', error);
     }
-  };
-  
-
-  const clear1 = document.getElementsByClassName('clear-input-1');
-  const clear1Funct = (e) => {
-    e.preventDefault();
-    clear1.reset();
   };
 
   if (!open) return null;
